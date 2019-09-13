@@ -30,7 +30,7 @@ public class Todo extends Auditable
     private boolean completed;
 
     @ManyToOne
-    @JoinColumn(name = "userid", nullable = false)
+    @JoinColumn(name = "todos", nullable = false)
     @JsonIgnoreProperties("todos")
     private User user;
 
@@ -39,7 +39,14 @@ public class Todo extends Auditable
 
     }
 
-    public Todo(String description, Date datestarted, boolean completed, User user) {
+    public Todo(String description, Date datestarted, User user) {
+        this.description = description;
+        this.datestarted = datestarted;
+        this.user = user;
+    }
+
+    public Todo(String description, Date datestarted, boolean completed, User user)
+    {
         this.description = description;
         this.datestarted = datestarted;
         this.completed = completed;

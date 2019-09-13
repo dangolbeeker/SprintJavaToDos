@@ -11,17 +11,17 @@ import java.util.List;
 public class Role extends  Auditable
 {
 
-//  ROLES
+//    ROLES
 //
-// role id primary key, not null long
-//  role name string not null unique
+//    roleid primary key, not null long
+//    rolename string not null unique
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long roleid;
 
     @Column(nullable = false, unique = true)
-    String name;
+    private String name;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("role")//to avoid loop
@@ -32,9 +32,8 @@ public class Role extends  Auditable
 
     }
 
-    public Role(String name, List<UserRoles> userRoles) {
+    public Role(String name) {
         this.name = name;
-        this.userRoles = userRoles;
     }
 
     public long getRoleid() {

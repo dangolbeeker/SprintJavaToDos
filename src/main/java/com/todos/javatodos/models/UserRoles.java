@@ -4,37 +4,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Table(name ="userroles")
+@Table(name = "userrole")
 public class UserRoles extends Auditable implements Serializable
 {
-
-//    USERROLES
-//
-//    roleid foreign key to role
-//    userid foreign key to user
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @ManyToOne
+    @JsonIgnoreProperties({"userRoles", "hibernateLazyInitializer"})
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties("userRoles")
     private User user;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @ManyToOne
-    @JoinColumn(name ="roleid")
-    @JsonIgnoreProperties("userRoles")
+    @JoinColumn(name = "roleid")
+    @JsonIgnoreProperties({"userRoles", "hibernateLazyInitializer"})
     private Role role;
 
     public UserRoles()
     {
-
     }
-
 
     public UserRoles(User user, Role role)
     {
@@ -42,19 +32,44 @@ public class UserRoles extends Auditable implements Serializable
         this.role = role;
     }
 
-    public User getUser() {
+    public User getUser()
+    {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User user)
+    {
         this.user = user;
     }
 
-    public Role getRole() {
+    public Role getRole()
+    {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Role role)
+    {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (!(o instanceof UserRoles))
+        {
+            return false;
+        }
+        UserRoles userRoles = (UserRoles) o;
+        return getUser().equals(userRoles.getUser()) && getRole().equals(userRoles.getRole());
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getUser(), getRole());
     }
 }

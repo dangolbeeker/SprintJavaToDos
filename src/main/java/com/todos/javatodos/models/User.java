@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +47,18 @@ public class User extends Auditable
     }
 
     ///constructor
-    public User(String username, String password, List<UserRoles> userRoles, List<Todo> todos) {
-        this.username = username;
-        this.password = password;
+    public User(String username, String password, List<UserRoles> userRoles){
+        setUsername(username);
+        setPassword(password);
+        for (UserRoles user : userRoles)
+        {
+            user.setUser(this);
+        }
         this.userRoles = userRoles;
-        this.todos = todos;
+    }
+
+    public User(String barnbarn, String password, ArrayList<UserRoles> users) {
+        super();
     }
 
     public long getUserid() {

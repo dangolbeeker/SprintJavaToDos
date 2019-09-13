@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface TodoService
 {
-    ArrayList<Todo> findAll();
+    ArrayList<Todo> findAll(long userid);
 
     Todo findTodoById(long id);
 
