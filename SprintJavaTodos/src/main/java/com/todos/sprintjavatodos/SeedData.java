@@ -1,4 +1,19 @@
-// provided by Vivek Vishwanath
+package com.todos.sprintjavatodos;
+
+
+import com.todos.sprintjavatodos.models.Role;
+import com.todos.sprintjavatodos.models.Todo;
+import com.todos.sprintjavatodos.models.User;
+import com.todos.sprintjavatodos.models.UserRoles;
+import com.todos.sprintjavatodos.repos.RoleRepository;
+import com.todos.sprintjavatodos.repos.ToDoRepository;
+import com.todos.sprintjavatodos.repos.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 @Transactional
 @Component
@@ -39,12 +54,12 @@ public class SeedData implements CommandLineRunner {
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u3 = new User("Bob", "password", users);
+        User u3 = new User("Scott", "password", users);
         userrepos.save(u3);
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u4 = new User("Jane", "password", users);
+        User u4 = new User("Brandon", "password", users);
         userrepos.save(u4);
     }
 }
