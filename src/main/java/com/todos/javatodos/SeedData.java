@@ -1,4 +1,18 @@
-// provided by Vivek Vishwanath
+package com.todos.javatodos;
+
+import com.todos.javatodos.models.Role;
+import com.todos.javatodos.models.Todo;
+import com.todos.javatodos.models.User;
+import com.todos.javatodos.models.UserRoles;
+import com.todos.javatodos.repos.RoleRepository;
+import com.todos.javatodos.repos.ToDoRepository;
+import com.todos.javatodos.repos.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 @Transactional
 @Component
